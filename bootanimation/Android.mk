@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-TARGET_GENERATED_BOOTANIMATION := $(TARGET_OUT_INTERMEDIATES)/BOOTANIMATION/bootanimation.zip
+TARGET_GENERATED_BOOTANIMATION := $(TARGET_OUT_INTERMEDIATES)/BOOTANIMATION/bootanimation_a13_efu.zip
 $(TARGET_GENERATED_BOOTANIMATION): INTERMEDIATES := $(call intermediates-dir-for,BOOTANIMATION,bootanimation)
 $(TARGET_GENERATED_BOOTANIMATION): $(SOONG_ZIP)
-	@echo "Building bootanimation.zip"
+	@echo "Building bootanimation_a13_efu.zip"
 	@rm -rf $(dir $@)
 	@mkdir -p $(INTERMEDIATES)
 	$(hide) tar xfp vendor/android_13_efu/bootanimation/bootanimation.tar -C $(INTERMEDIATES)
@@ -47,7 +47,7 @@ ifeq ($(TARGET_BOOTANIMATION),)
 endif
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := bootanimation.zip
+LOCAL_MODULE := bootanimation_a13_efu.zip
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(TARGET_OUT_PRODUCT)/media
 
@@ -58,9 +58,9 @@ $(LOCAL_BUILT_MODULE): $(TARGET_BOOTANIMATION)
 
 include $(CLEAR_VARS)
 
-BOOTANIMATION_SYMLINK := $(TARGET_OUT_PRODUCT)/media/bootanimation-dark.zip
+BOOTANIMATION_SYMLINK := $(TARGET_OUT_PRODUCT)/media/bootanimation-dark_a13_efu.zip
 $(BOOTANIMATION_SYMLINK): $(LOCAL_INSTALLED_MODULE)
 	@mkdir -p $(dir $@)
-	$(hide) ln -sf bootanimation.zip $@
+	$(hide) ln -sf bootanimation_a13_efu.zip $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOOTANIMATION_SYMLINK)
